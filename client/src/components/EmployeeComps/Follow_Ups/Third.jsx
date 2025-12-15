@@ -61,7 +61,7 @@ export default function Third() {
               <th>Registered</th>
               <th>3rd Follow-up</th>
               <th>Status</th>
-              <th>Assigned Emp</th>
+              {/* <th>Assigned Emp</th> */}
               <th>Employee</th>
               <th>Country</th>
             </tr>
@@ -92,7 +92,7 @@ export default function Third() {
                   </td>
 
                   <td>{candidate.third_f_status}</td>
-                  <td>{candidate.assigned_emp_id}</td>
+                  {/* <td>{candidate.assigned_emp_id}</td> */}
                   <td>{candidate.emp_name}</td>
                   <td>{candidate.country_name}</td>
                 </tr>
