@@ -81,7 +81,7 @@ th{
 /* TABLE CSS START */
 .table-wrapper {
   width: 100%;
-  max-width: 1300px;
+  max-width: 1225px;
   /* height: 75vh; */
   height: auto;
   /* overflow-y: auto;
@@ -98,7 +98,7 @@ th{
 }
 
 table {
-  min-width: 1250px; /* Enough width for all columns */
+  min-width: 1225px; /* Enough width for all columns */
   border-collapse: collapse;
 }
 
