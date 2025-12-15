@@ -59,7 +59,7 @@ export default function First() {
               <th>Registered</th>
               <th>1st Follow-Up</th>
               <th>Status</th>
-              <th style={{width: '10px'}}>Emp ID</th>
+              {/* <th style={{width: '10px'}}>Emp ID</th> */}
               <th>Employee</th>
               <th>Country</th>
             </tr>
@@ -88,7 +88,7 @@ export default function First() {
                     {formatDate(candidate.first_f_date)}
                   </td>
                   <td className="td-wrap">{candidate.first_f_status}</td>
-                  <td className="td-wrap">{candidate.assigned_emp_id}</td>
+                  {/* <td className="td-wrap">{candidate.assigned_emp_id}</td> */}
                   <td className="td-wrap">{candidate.emp_name}</td>
                   <td className="td-wrap">{candidate.country_name}</td>
                 </tr>
