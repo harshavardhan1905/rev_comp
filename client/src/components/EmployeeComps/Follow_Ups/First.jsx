@@ -1,0 +1,108 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+
+export default function First() {
+  const [candidates, setCandidates] = useState([]);
+  const empId = Number(localStorage.getItem("id"));
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/candidates")
+      .then((response) => setCandidates(response.data))
+      .catch((error) => console.log("Error fetching candidates: " + error));
+  }, []); // <-- FIX: Added empty dependency array
+
+  // ----------- FORMAT DATE FUNCTION ----------
+  const formatDate = (dateString) => {
+    if (!dateString) return "—";
+    const date = new Date(dateString);
+    return `${String(date.getDate()).padStart(2, "0")}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${date.getFullYear()}`;
+  };
+
+  // ----------- CHECK IF DATE IS PAST ----------
+  const isPastDate = (dateString) => {
+    if (!dateString) return false;
+
+    const today = new Date();
+    const followUpDate = new Date(dateString);
+
+    today.setHours(0, 0, 0, 0);
+    followUpDate.setHours(0, 0, 0, 0);
+
+    return followUpDate < today;
+  };
+
+  // ----------- FILTER RESULTS ----------
+  const pendingCandidates = candidates.filter(
+    (candidate) =>
+      candidate.first_f_status === "PENDING" &&
+      isPastDate(candidate.first_f_date) &&
+      candidate.assigned_emp_id === empId
+  );
+
+  return (
+    <div className="container">
+      <h5 className="mt-4">First Follow Up Pending</h5>
+
+      <div className="table-wrapper mt-3 table-wrap">
+        <table className="table table-bordered table-hover table-follow-ups">
+          <thead className="table-dark">
+            <tr>
+              <th style={{width: '10px'}}>ID</th>
+              <th>Domain</th>
+              <th>Company</th>
+              <th>Website</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Registered</th>
+              <th>1st Follow-Up</th>
+              <th>Status</th>
+              <th style={{width: '10px'}}>Emp ID</th>
+              <th>Employee</th>
+              <th>Country</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {pendingCandidates.length > 0 ? (
+              pendingCandidates.map((candidate) => (
+                <tr key={candidate.candidate_id}>
+                  <td className="td-wrap">{candidate.candidate_id}</td>
+                  <td className="td-wrap">{candidate.comp_domain}</td>
+                  <td className="td-wrap">{candidate.comp_name}</td>
+                  <td className="td-wrap">
+                    <a
+                      href={`https://${candidate.website}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {candidate.website}
+                    </a>
+                  </td>
+                  <td className="td-wrap">{candidate.email}</td>
+                  <td className="td-wrap"> {candidate.phone}</td>
+                  <td className="td-wrap">{formatDate(candidate.date_of_register)}</td>
+                  <td className="td-wrap" style={{ color: "red", fontWeight: "bold" }}>
+                    {formatDate(candidate.first_f_date)}
+                  </td>
+                  <td className="td-wrap">{candidate.first_f_status}</td>
+                  <td className="td-wrap">{candidate.assigned_emp_id}</td>
+                  <td className="td-wrap">{candidate.emp_name}</td>
+                  <td className="td-wrap">{candidate.country_name}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="12" className="text-center text-muted">
+                  <strong>🎉 No Pending Follow Ups</strong>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
