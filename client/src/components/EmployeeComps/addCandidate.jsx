@@ -48,7 +48,7 @@ export default function addCandidate() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/candidates/add",
+        "https://rev-comp-backend.onrender.com/api/candidates/add",
         { ...formData, empID, empName },
         {
           headers: {
@@ -170,7 +170,7 @@ export default function addCandidate() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/bulk/candidates/bulk-insert",
+        "https://rev-comp-backend.onrender.com/api/bulk/candidates/bulk-insert",
         { data: csvData },
         { headers: { Authorization: `Bearer ${token}` } }
       );
