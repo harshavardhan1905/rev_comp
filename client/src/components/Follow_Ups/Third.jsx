@@ -7,7 +7,7 @@ export default function Third() {
     // ✅ Fetch all candidates once (super admin view)
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/candidates')
+            .get('https://rev-comp-backend.onrender.com/api/candidates')
             .then((response) => {
                 setCandidate(response.data);
             })
