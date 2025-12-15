@@ -61,7 +61,7 @@ export default function Second() {
               <th>Registered</th>
               <th>2nd Follow-up</th>
               <th>Status</th>
-              <th>Emp ID</th>
+              {/* <th>Emp ID</th> */}
               <th>Employee</th>
               <th>Country</th>
             </tr>
@@ -86,7 +86,7 @@ export default function Second() {
                     {formatDate(candidate.second_f_date)}
                   </td>
                   <td>{candidate.second_f_status}</td>
-                  <td>{candidate.assigned_emp_id}</td>
+                  {/* <td>{candidate.assigned_emp_id}</td> */}
                   <td>{candidate.emp_name}</td>
                   <td>{candidate.country_name}</td>
                 </tr>
