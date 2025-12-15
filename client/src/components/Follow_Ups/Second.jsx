@@ -7,7 +7,7 @@ export default function Second() {
     // ✅ Fetch only once on mount
     useEffect(() => {
         axios
-            .get('http://localhost:5000/api/candidates')
+            .get('https://rev-comp-backend.onrender.com/api/candidates')
             .then((response) => {
                 setCandidate(response.data);
             })
