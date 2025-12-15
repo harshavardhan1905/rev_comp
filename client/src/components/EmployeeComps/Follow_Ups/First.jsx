@@ -7,7 +7,7 @@ export default function First() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/candidates")
+      .get("https://rev-comp-backend.onrender.com/api/candidates")
       .then((response) => setCandidates(response.data))
       .catch((error) => console.log("Error fetching candidates: " + error));
   }, []); // <-- FIX: Added empty dependency array
