@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Test Route
 app.get("/", (req, res) => {
-    res.send("Server is running..!");
+    res.send("Server is running..!" , process.env.DB_NAME);
 });
 
 // Register DB Routes
