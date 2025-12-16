@@ -153,7 +153,8 @@ export default function AddCandidate() {
         name: r.comp_name,
         website: r.website,
         email: r.email,
-        phone: r.phone || "NULL",
+        phone: r.phone && r.phone.trim() !== "" ? r.phone : null,
+
 
         dateReg: formatDate(r.date_of_register),
         firstFollow: formatDate(r.first_f_date),
