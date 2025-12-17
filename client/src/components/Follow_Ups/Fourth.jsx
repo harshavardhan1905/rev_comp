@@ -76,7 +76,7 @@ export default function Fourth() {
                                         <td className='td-wrap'>{candidate.comp_domain}</td>
                                         <td className='td-wrap'>{candidate.comp_name}</td>
                                         <td className='td-wrap'>
-                                            <a href={`https://${candidate.website}`} target="_blank" rel="noreferrer">
+                                            <a href={candidate.website} target="_blank" rel="noreferrer">
                                                 {candidate.website}
                                             </a>
                                         </td>
