@@ -12,7 +12,7 @@ export default function SuperAdminDashboard() {
 
   const [view, setView] = useState("dashboard");
   const [adminName, setadminName] = useState(null);
-  const [activeLink, setActiveLink] = useState(null);  // 👈 new state
+  const [activeLink, setActiveLink] = useState("dashboard");  // 👈 new state
   const navigate = useNavigate();
   // console.log(localStorage.getItem("name")+" SUper admin dahsboard::::")
 
