@@ -109,7 +109,7 @@ export default function TodoList() {
                   <td class="td-wrap">{c.comp_domain}</td>
                   <td class="td-wrap">{c.comp_name}</td>
                   <td class="td-wrap">
-                    <a href={`https://${c.website}`} target="_blank" rel="noreferrer">
+                    <a href={c.website} target="_blank" rel="noreferrer">
                       {c.website}
                     </a>
                   </td>
