@@ -12,7 +12,9 @@ app.use(cors({
 }));
 
 // Allow JSON data
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: "100mb" }));
+app.use(express.urlencoded({ limit: "100mb", extended: true }));
 
 // Test Route
 app.get("/", (req, res) => {
