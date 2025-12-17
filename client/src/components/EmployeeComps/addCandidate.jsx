@@ -181,9 +181,14 @@ export default function addCandidate() {
       alert("CSV Uploaded Successfully!")
       setCsvData([]); // reset
     } catch (error) {
-      setCsvMessage("Failed to upload CSV");
-      console.error(error);
-    }
+        const msg =
+          error.response?.data?.message ||
+          error.message ||
+          "Failed to upload CSV";
+      
+        setCsvMessage(msg);
+}
+
   };
 
   console.log("data from csv:", csvData)
