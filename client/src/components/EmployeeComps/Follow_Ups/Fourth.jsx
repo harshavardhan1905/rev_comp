@@ -77,7 +77,7 @@ export default function Fourth() {
                   <td class="td-wrap">{candidate.comp_name}</td>
                   <td class="td-wrap">
                     <a
-                      href={`https://${candidate.website}`}
+                      href={candidate.website}
                       target="_blank"
                       rel="noreferrer"
                     >
