@@ -234,9 +234,9 @@ export default function Candidates() {
                             <div className="model-content-sec">
 
                                 <div className="modal-header">
-                                    <h5 className="modal-title">
-                                        {selectedCandidate.email} - Details
-                                    </h5>
+                                    <h6 className="modal-title">
+                                        <strong>{selectedCandidate.email}</strong> - {selectedCandidate.emp_name}-{selectedCandidate.country_name}
+                                    </h6>
 
                                     <button className="btn-close" onClick={() => setShowModal(false)}></button>
                                 </div>
