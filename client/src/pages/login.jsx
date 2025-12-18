@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("https://rev-comp-backend.onrender.com/api/auth/login", {
+      const response = await axios.post("/api/auth/login", {
         email,
         password,
       });

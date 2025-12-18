@@ -13,7 +13,7 @@ db.getConnection((err, connection) => {
   if (err) {
     console.error("❌ Database Connection Failed:", err.message);
   } else {
-    console.log("✅ Database Connected from Revuteck");
+    console.log("✅ Database Connected");
     connection.release();
   }
 });

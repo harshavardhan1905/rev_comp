@@ -3,16 +3,24 @@ import axios from "axios";
 
 export default function First() {
   const [candidates, setCandidates] = useState([]);
+  const [selectedRows, setSelectedRows] = useState([]);
   const empId = Number(localStorage.getItem("id"));
 
-  useEffect(() => {
-    axios
-      .get("https://rev-comp-backend.onrender.com/api/candidates")
-      .then((response) => setCandidates(response.data))
-      .catch((error) => console.log("Error fetching candidates: " + error));
-  }, []); // <-- FIX: Added empty dependency array
+  /* ================= FETCH CANDIDATES ================= */
+  const fetchCandidates = async () => {
+    try {
+      const res = await axios.get("/api/candidates");
+      setCandidates(res.data);
+    } catch (error) {
+      console.log("Error fetching candidates:", error);
+    }
+  };
 
-  // ----------- FORMAT DATE FUNCTION ----------
+  useEffect(() => {
+    fetchCandidates();
+  }, []);
+
+  /* ================= FORMAT DATE ================= */
   const formatDate = (dateString) => {
     if (!dateString) return "—";
     const date = new Date(dateString);
@@ -21,7 +29,7 @@ export default function First() {
     ).padStart(2, "0")}-${date.getFullYear()}`;
   };
 
-  // ----------- CHECK IF DATE IS PAST ----------
+  /* ================= CHECK IF DATE IS PAST ================= */
   const isPastDate = (dateString) => {
     if (!dateString) return false;
 
@@ -34,7 +42,7 @@ export default function First() {
     return followUpDate < today;
   };
 
-  // ----------- FILTER RESULTS ----------
+  /* ================= FILTER FIRST FOLLOW UPS ================= */
   const pendingCandidates = candidates.filter(
     (candidate) =>
       candidate.first_f_status === "PENDING" &&
@@ -42,15 +50,52 @@ export default function First() {
       candidate.assigned_emp_id === empId
   );
 
+  /* ================= CHECKBOX HANDLER ================= */
+  const handleCheckbox = (id) => {
+    setSelectedRows((prev) =>
+      prev.includes(id)
+        ? prev.filter((x) => x !== id)
+        : [...prev, id]
+    );
+  };
+
+  /* ================= UPDATE STATUS ================= */
+  const handleSave = async () => {
+    if (selectedRows.length === 0) {
+      return alert("⚠ Select at least one candidate!");
+    }
+
+    try {
+      await axios.put("/api/candidates/update-status", {
+        ids: selectedRows,
+        stage: "first", // ✅ fixed
+      });
+
+      alert("✔ Updated Successfully");
+
+      setSelectedRows([]);
+      fetchCandidates(); // refresh table
+    } catch (error) {
+      console.log(error);
+      alert("❌ Update Failed");
+    }
+  };
+
+  /* ================= UI (UNCHANGED CSS) ================= */
   return (
     <div className="container">
-      <h5 className="mt-4">First Follow Up Pending</h5>
+      <div className="d-flex justify-content-between align-items-center">
+        <h5 className="mt-4">First Follow Up Pending</h5>
+        <button className="btn btn-primary btn-sm" onClick={handleSave}>
+          Save
+        </button>
+      </div>
 
       <div className="table-wrapper mt-3 table-wrap">
         <table className="table table-bordered table-hover table-follow-ups">
           <thead className="table-dark">
             <tr>
-              <th style={{width: '10px'}}>ID</th>
+              <th style={{ width: "10px" }}>ID</th>
               <th>Domain</th>
               <th>Company</th>
               <th>Website</th>
@@ -59,9 +104,9 @@ export default function First() {
               <th>Registered</th>
               <th>1st Follow-Up</th>
               <th>Status</th>
-              {/* <th style={{width: '10px'}}>Emp ID</th> */}
               <th>Employee</th>
               <th>Country</th>
+              <th>Update</th>
             </tr>
           </thead>
 
@@ -73,24 +118,35 @@ export default function First() {
                   <td className="td-wrap">{candidate.comp_domain}</td>
                   <td className="td-wrap">{candidate.comp_name}</td>
                   <td className="td-wrap">
-                    <a
-                      href={candidate.website}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <a href={candidate.website} target="_blank" rel="noreferrer">
                       {candidate.website}
                     </a>
                   </td>
                   <td className="td-wrap">{candidate.email}</td>
-                  <td className="td-wrap"> {candidate.phone}</td>
-                  <td className="td-wrap">{formatDate(candidate.date_of_register)}</td>
-                  <td className="td-wrap" style={{ color: "red", fontWeight: "bold" }}>
+                  <td className="td-wrap">{candidate.phone}</td>
+                  <td className="td-wrap">
+                    {formatDate(candidate.date_of_register)}
+                  </td>
+                  <td
+                    className="td-wrap"
+                    style={{ color: "red", fontWeight: "bold" }}
+                  >
                     {formatDate(candidate.first_f_date)}
                   </td>
                   <td className="td-wrap">{candidate.first_f_status}</td>
-                  {/* <td className="td-wrap">{candidate.assigned_emp_id}</td> */}
                   <td className="td-wrap">{candidate.emp_name}</td>
                   <td className="td-wrap">{candidate.country_name}</td>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedRows.includes(
+                        candidate.candidate_id
+                      )}
+                      onChange={() =>
+                        handleCheckbox(candidate.candidate_id)
+                      }
+                    />
+                  </td>
                 </tr>
               ))
             ) : (

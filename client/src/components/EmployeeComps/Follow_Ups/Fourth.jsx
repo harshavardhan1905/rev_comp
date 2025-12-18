@@ -7,7 +7,7 @@ export default function Fourth() {
 
   useEffect(() => {
     axios
-      .get("https://rev-comp-backend.onrender.com/api/candidates")
+      .get("/api/candidates")
       .then((response) => {
         setCandidates(response.data);
       })

@@ -16,7 +16,7 @@ export default function Candidates() {
     const [filterStatus, setFilterStatus] = React.useState("all");
 
     useEffect(() => {
-        axios.get('https://rev-comp-backend.onrender.com/api/candidates')
+        axios.get('/api/candidates')
             .then(response => {
                 setCandidates(response.data);
             })
@@ -45,7 +45,7 @@ export default function Candidates() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`https://rev-comp-backend.onrender.com/api/candidates/delete/${id}`);
+            await axios.delete(`/api/candidates/delete/${id}`);
 
             // Remove from UI immediately
             setCandidates(prev =>
@@ -67,7 +67,7 @@ export default function Candidates() {
             };
 
             await axios.put(
-                `https://rev-comp-backend.onrender.com/api/candidates/update/${editCandidate.candidate_id}`,
+                `/api/candidates/update/${editCandidate.candidate_id}`,
                 payload
             );
 
