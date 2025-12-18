@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -15,7 +15,7 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await api.post("/api/auth/login", {
         email,
         password,
       });
@@ -51,7 +51,8 @@ export default function Login() {
         //   navigate("/sales/dashboard");
           break;
         default:
-          navigate("/login");
+          alert("Something went wrong!")
+          navigate("/");
       }
 
     } catch (error) {
