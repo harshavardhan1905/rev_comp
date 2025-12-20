@@ -216,7 +216,7 @@ export default function Candidates() {
 
                                     <td
                                         className="td-wrap"
-                                        style={{ width: "10%", whiteSpace: "nowrap" }}
+                                        style={{ width: "7%", whiteSpace: "nowrap" }}
                                     >
                                         <div
                                             className="d-flex align-items-center justify-content-between"
