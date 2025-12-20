@@ -11,7 +11,7 @@ export default function Fourth() {
 
   const fetchCandidates= async() => {
     axios
-      .get("/api/candidates")
+      .get("https://rev-comp-backend.onrender.com/api/candidates")
       .then((response) => {
         setCandidates(response.data);
       })
@@ -26,7 +26,7 @@ export default function Fourth() {
     /* ================= FETCH COUNTRIES ================= */
   useEffect(() => {
     axios
-      .get("/api/country/data")
+      .get("https://rev-comp-backend.onrender.com/api/country/data")
       .then((response) => setCountries(response.data))
       .catch((err) => console.log("Error fetching countries", err));
   }, []);
@@ -83,7 +83,7 @@ export default function Fourth() {
     }
 
     try {
-      await axios.put("/api/candidates/update-status", {
+      await axios.put("https://rev-comp-backend.onrender.com/api/candidates/update-status", {
         ids: selectedRows,
         stage: "fourth", // ✅ fixed
       });
