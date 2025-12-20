@@ -47,8 +47,7 @@ export default function hrDashboard() {
     <div className='d-flex min-vh-100 w-100 m-0'>
 
       <div className="s-admin-dashboard-left">
-        <div className="profile">{localStorage.getItem("name")} <br />
-          <span className="sub">{localStorage.getItem("email")}</span>
+        <div className="profile">{localStorage.getItem("name")} 
           {localStorage.getItem("role") === "admin" && (
             <FiChevronLeft
               className="switch-icon"
@@ -56,6 +55,8 @@ export default function hrDashboard() {
               onClick={() => navigate("/admin")}
             />
           )}
+          <br />
+          <span className="sub">{localStorage.getItem("email")}</span>
 
         </div>
 
