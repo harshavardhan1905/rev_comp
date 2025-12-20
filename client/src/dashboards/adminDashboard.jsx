@@ -38,13 +38,15 @@ export default function SuperAdminDashboard() {
     <div className='d-flex  min-vh-100 w-100 m-0'>
 
       <div className="s-admin-dashboard-left">
-        <div className="profile">{localStorage.getItem("name")} <br />
-          <span className="sub">{localStorage.getItem("email")}</span>
+        <div className="profile">{localStorage.getItem("name")} 
           <FiChevronRight 
             className="switch-icon"
             title="Switch to Employee Dashboard"
             onClick={() => navigate("/hr")}
           />
+          <br />
+          <span className="sub">{localStorage.getItem("email")}</span>
+          
 
 
           {/* <p>Emp: {localStorage.getItem("name")}</p> */}
