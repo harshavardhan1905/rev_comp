@@ -10,7 +10,7 @@ export default function Second() {
 
   const fetchCandidates= async () => {
     axios
-      .get("/api/candidates")
+      .get("https://rev-comp-backend.onrender.com/api/candidates")
       .then((response) => setCandidates(response.data))
       .catch((error) =>
         console.log("There was an error fetching candidates: " + error)
@@ -23,7 +23,7 @@ export default function Second() {
     /* ================= FETCH COUNTRIES ================= */
   useEffect(() => {
     axios
-      .get("/api/country/data")
+      .get("https://rev-comp-backend.onrender.com/api/country/data")
       .then((response) => setCountries(response.data))
       .catch((err) => console.log("Error fetching countries", err));
   }, []);
@@ -81,7 +81,7 @@ export default function Second() {
     }
 
     try {
-      await axios.put("/api/candidates/update-status", {
+      await axios.put("https://rev-comp-backend.onrender.com/api/candidates/update-status", {
         ids: selectedRows,
         stage: "second", // ✅ fixed
       });
