@@ -46,7 +46,7 @@ export default function Login() {
           navigate("/hr");
           break;
         case "sales":
-          navigate("/sales/dashboard");
+          navigate("/hr/dashboard");
         // case "sales":
         //   navigate("/sales/dashboard");
           break;
