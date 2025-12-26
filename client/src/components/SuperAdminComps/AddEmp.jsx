@@ -102,10 +102,12 @@ export default function AddEmp() {
             required
           >
             <option value="">Select Role</option>
-            <option value="Admin">Admin</option>
-            <option value="Manager">Manager</option>
+            <option value="CEO">CEO</option>
+            <option value="FOUNDER">FOUNDER</option>
+            <option value="CO-FOUNDER">CO-FOUNDER</option>
+            <option value="COO">COO</option>
             <option value="HR">HR</option>
-            <option value="Sales">Sales</option>
+            <option value="SALESs">SALES</option>
           </select>
         </div>
 
