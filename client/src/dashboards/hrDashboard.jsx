@@ -36,6 +36,7 @@ export default function hrDashboard() {
 
   // Logout function
   const logoutHandle = () => {
+    alert("Are you sure want to leave!!")
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("name");
