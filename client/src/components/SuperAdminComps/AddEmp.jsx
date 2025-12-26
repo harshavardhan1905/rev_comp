@@ -107,7 +107,7 @@ export default function AddEmp() {
             <option value="CO-FOUNDER">CO-FOUNDER</option>
             <option value="COO">COO</option>
             <option value="HR">HR</option>
-            <option value="SALESs">SALES</option>
+            <option value="SALES">SALES</option>
           </select>
         </div>
 
