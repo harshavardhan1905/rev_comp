@@ -123,7 +123,7 @@ export default function AddEmp() {
           >
             <option value="">Select Login Access</option>
             <option value="admin">Admin Login</option>
-            <option value="manager">Manager Login</option>
+            {/* <option value="manager">Manager Login</option> */}
             <option value="hr">HR Login</option>
             <option value="sales">Sales Login</option>
           </select>
