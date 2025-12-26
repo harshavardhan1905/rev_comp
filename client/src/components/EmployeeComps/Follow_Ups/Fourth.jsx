@@ -141,7 +141,7 @@ export default function Fourth() {
               <th>Registered</th>
               <th>4th Follow-up</th>
               <th>Status</th>
-              <th>Assigned Emp</th>
+              {/* <th>Assigned Emp</th> */}
               <th>Employee</th>
               <th>Country</th>
               <th>Update</th>
