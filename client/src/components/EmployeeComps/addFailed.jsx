@@ -47,7 +47,7 @@ export default function AddFailedCompany() {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:5000/api/candidates/add/failed",
+        "https://rev-comp-backend.onrender.com/api/candidates/add/failed",
         {
           countryId: formData.countryId,
           countryName:

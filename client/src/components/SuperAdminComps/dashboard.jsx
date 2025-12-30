@@ -31,7 +31,7 @@ export default function Dashboard() {
         headers: { Authorization: `Bearer ${token}` },
       });
 
-      // const pendingRes = await axios.get("http://localhost:5000/api/candidates/pendingCount", {
+      // const pendingRes = await axios.get("https://rev-comp-backend.onrender.com/api/candidates/pendingCount", {
       //   headers: { Authorization: `Bearer ${token}` },
       // });
 

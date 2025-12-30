@@ -96,7 +96,7 @@ export default function AddCandidate() {
   // GET COUNTRY
   //--------------
   const fetchCountries = async ()=>{
-    axios.get('http://localhost:5000/api/country/data')
+    axios.get('https://rev-comp-backend.onrender.com/api/country/data')
     .then(res =>{
       setCountries(res.data);
     })

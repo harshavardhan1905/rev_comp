@@ -71,7 +71,7 @@ export default function Failed() {
       return alert("⚠ Select at least one candidate!");
     }
     try {
-      await axios.put("http://localhost:5000/api/candidates/final-status", {
+      await axios.put("https://rev-comp-backend.onrender.com/api/candidates/final-status", {
         ids: selectedRows,
         status: "PENDING",
       });
@@ -88,7 +88,7 @@ export default function Failed() {
     if (selectedRows.length === 0) return alert("⚠ Select at least one candidate!");
 
     try {
-      await axios.put("http://localhost:5000/api/candidates/final-status", {
+      await axios.put("https://rev-comp-backend.onrender.com/api/candidates/final-status", {
         ids: selectedRows,
         status: "FAILED",
       });
@@ -109,7 +109,7 @@ export default function Failed() {
     try {
       const empId = localStorage.getItem("id");
 
-      await axios.post("http://localhost:5000/api/candidates/add-failed", {
+      await axios.post("https://rev-comp-backend.onrender.com/api/candidates/add-failed", {
         domain,
         name,
         website,
